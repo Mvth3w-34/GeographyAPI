@@ -1,0 +1,32 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/GeographyAPI/appsettings.json
+/GeographyAPI/Properties/launchSettings.json
+/GeographyAPI/appsettings.Development.json
+*.http
+
+## Build results
+*/bin/
+*/obj/
+/GeographyAPI/obj
+/GeographyAPI/bin
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+##Visual Studio
+.vs/
+
+## ASP.NET secrets
+secrets.json
+
+## Logs and databases
+*.log
+*.db
+*.mdf
+*.ldf
