@@ -19,50 +19,87 @@ namespace GeographyAPI.Controllers
 
         }
 
-        // GET: api/<ValuesController>
+        // GET: api/countries/all
+        [Route("all")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Country>>> GetAllCountries()
         {
-            return await new string[] { "value1", "value2" };
+            IEnumerable<Country> countries = await _countryRepo.GetAllCountries();
+
+            if (countries != null)
+            {
+                return Ok(countries);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Country>> GetCountriesByLanguage(int id)
+        // GET api/countries/
+        [HttpGet("by-language")]
+        public async Task<ActionResult<Country>> GetCountriesByLanguage([FromQuery] string language)
         {
-            return await new Country;
+            IEnumerable<Country> countries = await _countryRepo.GetCountriesByLanguage(language);
+
+            if (countries != null)
+            {
+                return Ok(countries);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        // GET api/<ValuesController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Country>> GetCountryByID(int id)
         {
-            return await new Country;
+            Country country = await _countryRepo.GetCountryByID(id);
+
+            if (country != null)
+            {
+                return Ok(country);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Country>> GetCountryByCapitalCity(int id)
+        [HttpGet("by-capital")]
+        public async Task<ActionResult<Country>> GetCountryByCapitalCity([FromQuery] string capital)
         {
-            return await new Country;
+            Country country = await _countryRepo.GetCountryByCapitalCity(capital);
+
+            if (country != null)
+            {
+                return Ok(country);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
-
-        //// POST api/<ValuesController1>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT api/<ValuesController1>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<ValuesController1>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
+
+    //// POST api/<ValuesController1>
+    //[HttpPost]
+    //public void Post([FromBody] string value)
+    //{
+    //}
+
+    //// PUT api/<ValuesController1>/5
+    //[HttpPut("{id}")]
+    //public void Put(int id, [FromBody] string value)
+    //{
+    //}
+
+    //// DELETE api/<ValuesController1>/5
+    //[HttpDelete("{id}")]
+    //public void Delete(int id)
+    //{
+    //}
 }
+
