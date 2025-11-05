@@ -17,43 +17,51 @@ namespace GeographyAPI.Controllers
 
         }
 
-        // GET: api/<ValuesController>
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetAllLanguages()
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<Language>>> GetAllLanguages()
         {
-            return await new string[] { "value1", "value2" };
+            IEnumerable<Language> languages = await _languageRepo.GetAllLanguages();
+
+            if (languages != null)
+            {
+                return Ok(languages);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Language>> GetLanguagesByCountry(int id)
+        [HttpGet("by-country")]
+        public async Task<ActionResult<IEnumerable<Language>>> GetLanguagesByCountry([FromQuery] string country)
         {
-            return await new Country;
+            IEnumerable<Language> languages = await _languageRepo.GetLanguagesByCountry(country);
+            if (languages != null)
+            {
+                return Ok(languages);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Country>> GetLanguageByID(int id)
         {
-            return await new Country;
+            Language language = await _languageRepo.GetLanguageByID(id);
+
+            if (language != null)
+            {
+                return Ok(language);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        //// POST api/<ValuesController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
 
-        //// PUT api/<ValuesController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<ValuesController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

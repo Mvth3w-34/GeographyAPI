@@ -1,6 +1,4 @@
 using GeographyAPI.Repositories;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Identity.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +7,7 @@ builder.Services.AddScoped<ICountryRepo, MockCountryRepo>();
 builder.Services.AddScoped<ICountryLanguageRepo, MockCountryLanguageRepo>();
 builder.Services.AddScoped<ILanguageRepo, MockLanguageRepo>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApi(builder.Configuration);
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApi(builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
