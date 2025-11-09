@@ -5,7 +5,7 @@ namespace GeographyAPI.Data
 {
     public class GeographyContext : DbContext
     {
-        public GeographyContext(DbContextOptions<GeographyContext> opt) : base()
+        public GeographyContext(DbContextOptions<GeographyContext> options) : base(options)
         {
 
         }
