@@ -21,7 +21,7 @@ namespace GeographyAPI.Models
 
         public string? TriviaFact { get; set; }
 
-        ICollection<Language> Languages { get; set; }
+        public List<CountryLanguage> CountryLanguage { get; set; }
 
     }
 }

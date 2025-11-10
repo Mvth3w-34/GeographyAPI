@@ -16,6 +16,6 @@ namespace GeographyAPI.Models
         [Required]
         public int NumberOfSpeakers { get; set; }
 
-        public ICollection<Country> Countries { get; set; }
+        public List<CountryLanguage> CountryLanguage { get; set; }
     }
 }

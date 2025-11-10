@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeographyAPI.Migrations
 {
     [DbContext(typeof(GeographyContext))]
-    [Migration("20251109190314_Initial_Migration")]
+    [Migration("20251109214302_Initial_Migration")]
     partial class Initial_Migration
     {
         /// <inheritdoc />
@@ -40,9 +40,6 @@ namespace GeographyAPI.Migrations
                     b.Property<DateTime>("Independence")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("LanguageID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -54,8 +51,6 @@ namespace GeographyAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CountryID");
-
-                    b.HasIndex("LanguageID");
 
                     b.ToTable("Country");
                 });
@@ -106,23 +101,16 @@ namespace GeographyAPI.Migrations
                     b.ToTable("Language");
                 });
 
-            modelBuilder.Entity("GeographyAPI.Models.Country", b =>
-                {
-                    b.HasOne("GeographyAPI.Models.Language", null)
-                        .WithMany("Countries")
-                        .HasForeignKey("LanguageID");
-                });
-
             modelBuilder.Entity("GeographyAPI.Models.CountryLanguage", b =>
                 {
                     b.HasOne("GeographyAPI.Models.Country", "Country")
-                        .WithMany()
+                        .WithMany("CountryLanguage")
                         .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GeographyAPI.Models.Language", "Language")
-                        .WithMany()
+                        .WithMany("CountryLanguage")
                         .HasForeignKey("LanguageID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -132,9 +120,14 @@ namespace GeographyAPI.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("GeographyAPI.Models.Country", b =>
+                {
+                    b.Navigation("CountryLanguage");
+                });
+
             modelBuilder.Entity("GeographyAPI.Models.Language", b =>
                 {
-                    b.Navigation("Countries");
+                    b.Navigation("CountryLanguage");
                 });
 #pragma warning restore 612, 618
         }

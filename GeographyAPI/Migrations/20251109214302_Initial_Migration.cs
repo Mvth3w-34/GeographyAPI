@@ -12,6 +12,23 @@ namespace GeographyAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Country",
+                columns: table => new
+                {
+                    CountryID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Capital = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Population = table.Column<int>(type: "int", nullable: false),
+                    Independence = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TriviaFact = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Country", x => x.CountryID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Language",
                 columns: table => new
                 {
@@ -24,29 +41,6 @@ namespace GeographyAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Language", x => x.LanguageID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Country",
-                columns: table => new
-                {
-                    CountryID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Capital = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Population = table.Column<int>(type: "int", nullable: false),
-                    Independence = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TriviaFact = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LanguageID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Country", x => x.CountryID);
-                    table.ForeignKey(
-                        name: "FK_Country_Language_LanguageID",
-                        column: x => x.LanguageID,
-                        principalTable: "Language",
-                        principalColumn: "LanguageID");
                 });
 
             migrationBuilder.CreateTable(
@@ -74,11 +68,6 @@ namespace GeographyAPI.Migrations
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Country_LanguageID",
-                table: "Country",
-                column: "LanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CountryLanguage_CountryID",
