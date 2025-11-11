@@ -5,22 +5,22 @@ namespace GeographyAPI.Repositories
     public class LanguageRepo : ILanguageRepo
     {
 
-        public async Task<IEnumerable<Language>> GetAllLanguages()
+        public async Task<IEnumerable<Language>> GetAllLanguagesAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Language> GetLanguageByID(int id)
+        public async Task<Language> GetLanguageByIDAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Language>> GetLanguagesByCountry(string country)
+        public async Task<IEnumerable<Language>> GetLanguagesByCountryAsync(string country)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Language>> GetLanguagesByFSIRank(string rank)
+        public async Task<IEnumerable<Language>> GetLanguagesByFSIRankAsync(string rank)
         {
             throw new NotImplementedException();
         }

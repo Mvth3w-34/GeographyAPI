@@ -4,7 +4,7 @@ namespace GeographyAPI.Repositories
 {
     public class MockCountryRepo : ICountryRepo
     {
-        public async Task<IEnumerable<Country>> GetAllCountries()
+        public async Task<IEnumerable<Country>> GetAllCountriesAsync()
         {
             return new List<Country> {
                 new Country{ CountryID = 1, Name = "Canada", Capital ="Ottawa" },
@@ -13,7 +13,7 @@ namespace GeographyAPI.Repositories
             };
         }
 
-        public async Task<IEnumerable<Country>> GetCountriesByLanguage(string language)
+        public async Task<IEnumerable<Country>> GetCountriesByLanguageAsync(string language)
         {
             return new List<Country> {
                 new Country{CountryID = 1, Name = "Canada", Capital = "Ottawa"},
@@ -21,12 +21,12 @@ namespace GeographyAPI.Repositories
             }; ;
         }
 
-        public async Task<Country> GetCountryByCapitalCity(string name)
+        public async Task<Country> GetCountryByCapitalCityAsync(string name)
         {
             return new Country { CountryID = 1, Name = "Canada", Capital = "Ottawa" };
         }
 
-        public async Task<Country> GetCountryByID(int id)
+        public async Task<Country> GetCountryByIDAsync(int id)
         {
             return new Country { CountryID = 1, Name = "Canada", Capital = "Ottawa" };
         }

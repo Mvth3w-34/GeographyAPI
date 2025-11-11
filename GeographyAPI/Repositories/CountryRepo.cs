@@ -6,22 +6,22 @@ namespace GeographyAPI.Repositories
     {
 
 
-        public async Task<Country> GetCountryByID(int id)
+        public async Task<Country> GetCountryByIDAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Country>> GetAllCountries()
+        public async Task<IEnumerable<Country>> GetAllCountriesAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Country> GetCountryByCapitalCity(string name)
+        public async Task<Country> GetCountryByCapitalCityAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Country>> GetCountriesByLanguage(string language)
+        public async Task<IEnumerable<Country>> GetCountriesByLanguageAsync(string language)
         {
             throw new NotImplementedException();
         }
