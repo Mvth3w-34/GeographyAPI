@@ -19,5 +19,10 @@ namespace GeographyAPI.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<Language>> GetLanguagesByFSIRank(string country)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

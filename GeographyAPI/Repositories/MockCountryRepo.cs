@@ -7,28 +7,28 @@ namespace GeographyAPI.Repositories
         public async Task<IEnumerable<Country>> GetAllCountries()
         {
             return new List<Country> {
-                new Country{ CountryID = 1, Name = "Canada", Capital ="Ottawa", Population= 2000, Independence = new DateTime(1867,6,1) },
-                new Country{ CountryID = 2, Name = "USA", Capital ="WashingtonDC", Population= 3000, Independence = new DateTime(1867,6,4) },
-                new Country{ CountryID = 3, Name = "Mexico", Capital ="Mexico City", Population= 4000, Independence = new DateTime(1821,8,24) },
+                new Country{ CountryID = 1, Name = "Canada", Capital ="Ottawa" },
+                new Country{CountryID = 2, Name = "USA", Capital = "WashingtonDC"},
+                new Country{CountryID = 3, Name = "Mexico", Capital = "Mexico City"},
             };
         }
 
         public async Task<IEnumerable<Country>> GetCountriesByLanguage(string language)
         {
             return new List<Country> {
-                new Country{ CountryID = 1, Name = "Canada", Capital ="Ottawa", Population= 2000, Independence = new DateTime(1867,6,1) },
-                new Country{ CountryID = 2, Name = "USA", Capital ="WashingtonDC", Population= 3000, Independence = new DateTime(1867,6,4) },
+                new Country{CountryID = 1, Name = "Canada", Capital = "Ottawa"},
+                new Country{CountryID = 2, Name = "USA", Capital = "WashingtonDC"},
             }; ;
         }
 
         public async Task<Country> GetCountryByCapitalCity(string name)
         {
-            return new Country { CountryID = 1, Name = "Canada", Capital = "Ottawa", Population = 2000, Independence = new DateTime(1867, 6, 1) };
+            return new Country { CountryID = 1, Name = "Canada", Capital = "Ottawa" };
         }
 
         public async Task<Country> GetCountryByID(int id)
         {
-            return new Country { CountryID = 1, Name = "Canada", Capital = "Ottawa", Population = 2000, Independence = new DateTime(1867, 6, 1) };
+            return new Country { CountryID = 1, Name = "Canada", Capital = "Ottawa" };
         }
 
 

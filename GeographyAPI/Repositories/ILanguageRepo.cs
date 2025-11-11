@@ -8,5 +8,7 @@ namespace GeographyAPI.Repositories
         Task<IEnumerable<Language>> GetAllLanguages();
         Task<IEnumerable<Language>> GetLanguagesByCountry(string country);
 
+        Task<IEnumerable<Language>> GetLanguagesByFSIRank(string rank);
+
     }
 }

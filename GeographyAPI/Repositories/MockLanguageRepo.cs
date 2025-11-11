@@ -7,26 +7,32 @@ namespace GeographyAPI.Repositories
         public async Task<IEnumerable<Language>> GetAllLanguages()
         {
             return new List<Language> {
-                new Language{ LanguageID=1, Name= "English", LevelOfDifficuly = 4, NumberOfSpeakers = 300},
-                new Language{ LanguageID=2, Name= "French", LevelOfDifficuly = 3, NumberOfSpeakers = 400},
-                new Language{ LanguageID=3, Name= "Spanish", LevelOfDifficuly = 5, NumberOfSpeakers = 500},
+                new Language{ LanguageID=1, Name= "English", HoursOfStudyForProficiency = 0, FSIRank = "0"},
+                new Language{ LanguageID=2, Name= "French", HoursOfStudyForProficiency = 675, FSIRank = "I"},
+                new Language{ LanguageID=3, Name= "Spanish", HoursOfStudyForProficiency = 675, FSIRank = "I"},
             };
         }
 
         public async Task<Language> GetLanguageByID(int id)
         {
-            return new Language { LanguageID = 0, Name = "English", LevelOfDifficuly = 4, NumberOfSpeakers = 300 };
+            return new Language { LanguageID = 1, Name = "English", HoursOfStudyForProficiency = 0, FSIRank = "0" };
         }
 
         public async Task<IEnumerable<Language>> GetLanguagesByCountry(string country)
         {
             return new List<Language> {
-                new Language{ LanguageID=1, Name= "English", LevelOfDifficuly = 4, NumberOfSpeakers = 300},
-                new Language{ LanguageID=2, Name= "French", LevelOfDifficuly = 3, NumberOfSpeakers = 400},
-                new Language{ LanguageID=3, Name= "Spanish", LevelOfDifficuly = 5, NumberOfSpeakers = 500},
+                new Language{ LanguageID=1, Name= "English", HoursOfStudyForProficiency = 0, FSIRank = "0"},
+                new Language{ LanguageID=2, Name= "French", HoursOfStudyForProficiency = 675, FSIRank = "I"},
             };
         }
 
+        public async Task<IEnumerable<Language>> GetLanguagesByFSIRank(string rank)
+        {
+            return new List<Language> {
+                new Language{ LanguageID=2, Name= "French", HoursOfStudyForProficiency = 675, FSIRank = "I"},
+                new Language{ LanguageID=3, Name= "Spanish", HoursOfStudyForProficiency = 675, FSIRank = "I"},
+            };
+        }
 
     }
 }
