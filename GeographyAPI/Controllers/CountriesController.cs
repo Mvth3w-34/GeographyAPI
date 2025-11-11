@@ -20,7 +20,6 @@ namespace GeographyAPI.Controllers
         }
 
         // GET: api/countries/all
-        [Route("all")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Country>>> GetAllCountries()
         {
@@ -32,7 +31,7 @@ namespace GeographyAPI.Controllers
             }
             else
             {
-                return BadRequest();
+                return NotFound();
             }
 
         }
@@ -49,7 +48,7 @@ namespace GeographyAPI.Controllers
             }
             else
             {
-                return BadRequest();
+                return NotFound();
             }
         }
 
@@ -64,7 +63,7 @@ namespace GeographyAPI.Controllers
             }
             else
             {
-                return BadRequest();
+                return NotFound();
             }
         }
 
@@ -79,7 +78,7 @@ namespace GeographyAPI.Controllers
             }
             else
             {
-                return BadRequest();
+                return NotFound();
             }
         }
     }

@@ -17,7 +17,7 @@ namespace GeographyAPI.Controllers
 
         }
 
-        [HttpGet("all")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Language>>> GetAllLanguages()
         {
             IEnumerable<Language> languages = await _languageRepo.GetAllLanguages();
@@ -28,7 +28,7 @@ namespace GeographyAPI.Controllers
             }
             else
             {
-                return BadRequest();
+                return NotFound();
             }
         }
 
@@ -42,7 +42,21 @@ namespace GeographyAPI.Controllers
             }
             else
             {
-                return BadRequest();
+                return NotFound();
+            }
+        }
+
+        [HttpGet("by-FSIRank")]
+        public async Task<ActionResult<IEnumerable<Language>>> GetLanguagesByFSI([FromQuery] string rank)
+        {
+            IEnumerable<Language> languages = await _languageRepo.GetLanguagesByFSIRank(rank);
+            if (languages != null)
+            {
+                return Ok(languages);
+            }
+            else
+            {
+                return NotFound();
             }
         }
 
@@ -58,7 +72,7 @@ namespace GeographyAPI.Controllers
             }
             else
             {
-                return BadRequest();
+                return NotFound();
             }
         }
 
