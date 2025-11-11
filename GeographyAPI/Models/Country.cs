@@ -8,17 +8,14 @@ namespace GeographyAPI.Models
         public int CountryID { get; set; }
 
         [Required]
+        [StringLength(30)]
         public string Name { get; set; }
 
         [Required]
+        [StringLength(16)]
         public string Capital { get; set; }
 
-        [Required]
-        public int Population { get; set; }
-
-        [Required]
-        public DateTime Independence { get; set; }
-
+        [StringLength(300)]
         public string? TriviaFact { get; set; }
 
         public List<CountryLanguage> CountryLanguage { get; set; }

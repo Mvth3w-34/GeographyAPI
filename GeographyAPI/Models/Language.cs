@@ -8,14 +8,15 @@ namespace GeographyAPI.Models
         public int LanguageID { get; set; }
 
         [Required]
+        [StringLength(30)]
         public string Name { get; set; }
 
         [Required]
-        public int LevelOfDifficuly { get; set; }
+        public int HoursOfStudyForProficiency { get; set; }
 
         [Required]
-        public int NumberOfSpeakers { get; set; }
-
+        [StringLength(3)]
+        public string FSIRank { get; set; } //Ranges from 0 - V using Roman Numerals
         public List<CountryLanguage> CountryLanguage { get; set; }
     }
 }
