@@ -9,9 +9,9 @@ var connectionString = builder.Configuration["ConnectionString"];
 builder.Services.AddControllers();
 builder.Services.AddDbContext<GeographyContext>(options =>
     options.UseSqlServer(connectionString ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
-builder.Services.AddScoped<ICountryRepo, MockCountryRepo>();
-builder.Services.AddScoped<ICountryLanguageRepo, MockCountryLanguageRepo>();
-builder.Services.AddScoped<ILanguageRepo, MockLanguageRepo>();
+builder.Services.AddScoped<ICountryRepo, CountryRepo>();
+builder.Services.AddScoped<ICountryLanguageRepo, CountryLanguageRepo>();
+builder.Services.AddScoped<ILanguageRepo, LanguageRepo>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
