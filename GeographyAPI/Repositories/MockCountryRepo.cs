@@ -7,7 +7,7 @@ namespace GeographyAPI.Repositories
         public async Task<IEnumerable<Country>> GetAllCountriesAsync()
         {
             return new List<Country> {
-                new Country{ CountryID = 1, Name = "Canada", Capital ="Ottawa" },
+                new Country{CountryID = 1, Name = "Canada", Capital ="Ottawa" },
                 new Country{CountryID = 2, Name = "USA", Capital = "WashingtonDC"},
                 new Country{CountryID = 3, Name = "Mexico", Capital = "Mexico City"},
             };
@@ -18,7 +18,7 @@ namespace GeographyAPI.Repositories
             return new List<Country> {
                 new Country{CountryID = 1, Name = "Canada", Capital = "Ottawa"},
                 new Country{CountryID = 2, Name = "USA", Capital = "WashingtonDC"},
-            }; ;
+            };
         }
 
         public async Task<Country> GetCountryByCapitalCityAsync(string name)

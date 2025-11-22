@@ -11,7 +11,6 @@ namespace GeographyAPITests
     {
         private readonly ILanguageRepo _languageMockRepo = Substitute.For<ILanguageRepo>();
 
-
         [Fact]
         public async Task GetAllLanguagesTestValidAsync()
         {
