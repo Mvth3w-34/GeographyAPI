@@ -13,19 +13,19 @@ namespace GeographyAPI.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Language>> GetAllLanguagesAsync()
+        public async Task<IEnumerable<Language>?> GetAllLanguagesAsync()
         {
             return await _context.Language.ToListAsync();
         }
 
-        public async Task<Language> GetLanguageByIDAsync(int id)
+        public async Task<Language?> GetLanguageByIDAsync(int id)
         {
             Language? language = await _context.Language.Where(l => l.LanguageID == id).FirstOrDefaultAsync();
 
             return language;
         }
 
-        public async Task<IEnumerable<Language>> GetLanguagesByCountryAsync(string country)
+        public async Task<IEnumerable<Language>?> GetLanguagesByCountryAsync(string country)
         {
             int? countryId = await _context.Country.Where(c => c.Name == country).Select(c => c.CountryID).FirstOrDefaultAsync();
 
@@ -41,7 +41,7 @@ namespace GeographyAPI.Repositories
             return languages;
         }
 
-        public async Task<IEnumerable<Language>> GetLanguagesByFSIRankAsync(string rank)
+        public async Task<IEnumerable<Language>?> GetLanguagesByFSIRankAsync(string rank)
         {
             List<Language>? languages = await _context.Language.Where(l => l.FSIRank == rank).ToListAsync();
 
