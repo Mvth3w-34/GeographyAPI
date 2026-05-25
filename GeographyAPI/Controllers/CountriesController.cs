@@ -23,7 +23,7 @@ namespace GeographyAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Country>>> GetAllCountries()
         {
-            IEnumerable<Country> countries = await _countryRepo.GetAllCountriesAsync();
+            IEnumerable<Country>? countries = await _countryRepo.GetAllCountriesAsync();
 
             if (countries != null)
             {
@@ -40,7 +40,7 @@ namespace GeographyAPI.Controllers
         [HttpGet("by-language")]
         public async Task<ActionResult<Country>> GetCountriesByLanguage([FromQuery] string language)
         {
-            IEnumerable<Country> countries = await _countryRepo.GetCountriesByLanguageAsync(language);
+            IEnumerable<Country>? countries = await _countryRepo.GetCountriesByLanguageAsync(language);
 
             if (countries != null)
             {
@@ -55,7 +55,7 @@ namespace GeographyAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Country>> GetCountryByID(int id)
         {
-            Country country = await _countryRepo.GetCountryByIDAsync(id);
+            Country? country = await _countryRepo.GetCountryByIDAsync(id);
 
             if (country != null)
             {
@@ -70,7 +70,7 @@ namespace GeographyAPI.Controllers
         [HttpGet("by-capital")]
         public async Task<ActionResult<Country>> GetCountryByCapitalCity([FromQuery] string capital)
         {
-            Country country = await _countryRepo.GetCountryByCapitalCityAsync(capital);
+            Country? country = await _countryRepo.GetCountryByCapitalCityAsync(capital);
 
             if (country != null)
             {

@@ -20,7 +20,7 @@ namespace GeographyAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Language>>> GetAllLanguages()
         {
-            IEnumerable<Language> languages = await _languageRepo.GetAllLanguagesAsync();
+            IEnumerable<Language>? languages = await _languageRepo.GetAllLanguagesAsync();
 
             if (languages != null)
             {
@@ -35,7 +35,7 @@ namespace GeographyAPI.Controllers
         [HttpGet("by-country")]
         public async Task<ActionResult<IEnumerable<Language>>> GetLanguagesByCountry([FromQuery] string country)
         {
-            IEnumerable<Language> languages = await _languageRepo.GetLanguagesByCountryAsync(country);
+            IEnumerable<Language>? languages = await _languageRepo.GetLanguagesByCountryAsync(country);
 
             if (languages != null)
             {
@@ -50,7 +50,7 @@ namespace GeographyAPI.Controllers
         [HttpGet("by-FSIRank")]
         public async Task<ActionResult<IEnumerable<Language>>> GetLanguagesByFSI([FromQuery] string rank)
         {
-            IEnumerable<Language> languages = await _languageRepo.GetLanguagesByFSIRankAsync(rank);
+            IEnumerable<Language>? languages = await _languageRepo.GetLanguagesByFSIRankAsync(rank);
 
             if (languages != null)
             {
@@ -66,7 +66,7 @@ namespace GeographyAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Language>> GetLanguageByID(int id)
         {
-            Language language = await _languageRepo.GetLanguageByIDAsync(id);
+            Language? language = await _languageRepo.GetLanguageByIDAsync(id);
 
             if (language != null)
             {
