@@ -1,6 +1,8 @@
 using GeographyAPI.Data;
 using GeographyAPI.Repositories;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,21 @@ builder.Services.AddDbContext<GeographyContext>(options =>
 builder.Services.AddScoped<ICountryRepo, CountryRepo>();
 builder.Services.AddScoped<ICountryLanguageRepo, CountryLanguageRepo>();
 builder.Services.AddScoped<ILanguageRepo, LanguageRepo>();
+
+//Adding Rate Limiting
+builder.Services.AddRateLimiter(options =>
+{
+    // Return a 429 Too Many Requests status code when a limit is breached
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+    options.AddFixedWindowLimiter(policyName: "Fixed", options =>
+    {
+        options.Window = TimeSpan.FromSeconds(10);
+        options.PermitLimit = 3;
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 0;
+    });
+});
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -26,8 +43,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseRateLimiter();
 
-app.MapControllers();
+app.MapControllers().RequireRateLimiting("Fixed");
 
 app.Run();
