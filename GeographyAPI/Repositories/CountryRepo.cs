@@ -21,6 +21,7 @@ namespace GeographyAPI.Repositories
                 {
                     Name = c.Name,
                     Capital = c.Capital,
+                    TriviaFact = c.TriviaFact
                 })
                 .FirstOrDefaultAsync();
 
@@ -34,6 +35,7 @@ namespace GeographyAPI.Repositories
                 {
                     Name = c.Name,
                     Capital = c.Capital,
+                    TriviaFact = c.TriviaFact
                 })
                 .ToListAsync();
 
@@ -47,6 +49,7 @@ namespace GeographyAPI.Repositories
                 {
                     Name = c.Name,
                     Capital = c.Capital,
+                    TriviaFact = c.TriviaFact
                 })
                 .FirstOrDefaultAsync();
 
@@ -67,6 +70,7 @@ namespace GeographyAPI.Repositories
                 {
                     Name = cl.Country.Name,
                     Capital = cl.Country.Capital,
+                    TriviaFact = cl.Country.TriviaFact
                 })
                 .ToListAsync();
 

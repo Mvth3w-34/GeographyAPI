@@ -5,6 +5,6 @@ namespace GeographyAPI.DTOs.External
 
         public string Name { get; set; }
         public string Capital { get; set; }
-        public double? TriviaFact { get; set; }
+        public string? TriviaFact { get; set; }
     }
 }
