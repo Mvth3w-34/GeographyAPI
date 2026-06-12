@@ -14,7 +14,6 @@ public static class InjectedServices
         services.AddDbContext<GeographyContext>(options =>
             options.UseSqlServer(connectionString ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
         services.AddScoped<ICountryRepo, CountryRepo>();
-        services.AddScoped<ICountryLanguageRepo, CountryLanguageRepo>();
         services.AddScoped<ILanguageRepo, LanguageRepo>();
 
         //Adding Rate Limiting
