@@ -1,15 +1,14 @@
-﻿using GeographyAPI.Models;
+﻿using GeographyAPI.DTOs.External;
 
 namespace GeographyAPI.Repositories
 {
     public interface ICountryRepo
     {
-        Task<Country?> GetCountryByIDAsync(int id);
+        Task<ExternalCountryDTO?> GetCountryByIDAsync(int id);
 
-        Task<IEnumerable<Country>?> GetAllCountriesAsync();
+        Task<IEnumerable<ExternalCountryDTO>?> GetAllCountriesAsync();
+        Task<ExternalCountryDTO?> GetCountryByCapitalCityAsync(string name);
 
-        Task<Country?> GetCountryByCapitalCityAsync(string name);
-
-        Task<IEnumerable<Country>?> GetCountriesByLanguageAsync(string language);
+        Task<IEnumerable<ExternalCountryDTO>?> GetCountriesByLanguageAsync(string language);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using GeographyAPI.Data;
-using GeographyAPI.Models;
+using GeographyAPI.DTOs.External;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeographyAPI.Repositories
@@ -14,28 +14,46 @@ namespace GeographyAPI.Repositories
         }
 
 
-        public async Task<Country?> GetCountryByIDAsync(int id)
+        public async Task<ExternalCountryDTO?> GetCountryByIDAsync(int id)
         {
-            Country? country = await _context.Country.Where(c => c.CountryID == id).FirstOrDefaultAsync();
+            ExternalCountryDTO? country = await _context.Country.Where(c => c.CountryID == id)
+                .Select(c => new ExternalCountryDTO
+                {
+                    Name = c.Name,
+                    Capital = c.Capital,
+                })
+                .FirstOrDefaultAsync();
 
             return country;
         }
 
-        public async Task<IEnumerable<Country>?> GetAllCountriesAsync()
+        public async Task<IEnumerable<ExternalCountryDTO>?> GetAllCountriesAsync()
         {
-            List<Country>? countries = await _context.Country.ToListAsync();
+            List<ExternalCountryDTO>? countries = await _context.Country
+                .Select(c => new ExternalCountryDTO
+                {
+                    Name = c.Name,
+                    Capital = c.Capital,
+                })
+                .ToListAsync();
 
             return countries;
         }
 
-        public async Task<Country?> GetCountryByCapitalCityAsync(string name)
+        public async Task<ExternalCountryDTO?> GetCountryByCapitalCityAsync(string name)
         {
-            Country? country = await _context.Country.Where(c => c.Capital == name).FirstOrDefaultAsync();
+            ExternalCountryDTO? country = await _context.Country.Where(c => c.Capital == name)
+                .Select(c => new ExternalCountryDTO
+                {
+                    Name = c.Name,
+                    Capital = c.Capital,
+                })
+                .FirstOrDefaultAsync();
 
             return country;
         }
 
-        public async Task<IEnumerable<Country>?> GetCountriesByLanguageAsync(string language)
+        public async Task<IEnumerable<ExternalCountryDTO>?> GetCountriesByLanguageAsync(string language)
         {
             int? languageId = await _context.Language.Where(l => l.Name == language).Select(l => l.LanguageID).FirstOrDefaultAsync();
 
@@ -44,8 +62,12 @@ namespace GeographyAPI.Repositories
                 return null;
             }
 
-            List<Country>? countries = await _context.CountryLanguage.Where(cl => cl.LanguageID == languageId)
-                .Select(cl => cl.Country)
+            List<ExternalCountryDTO>? countries = await _context.CountryLanguage.Where(cl => cl.LanguageID == languageId)
+                .Select(cl => new ExternalCountryDTO
+                {
+                    Name = cl.Country.Name,
+                    Capital = cl.Country.Capital,
+                })
                 .ToListAsync();
 
             return countries;

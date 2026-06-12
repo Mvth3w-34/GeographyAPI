@@ -1,5 +1,5 @@
 ﻿using GeographyAPI.Data;
-using GeographyAPI.Models;
+using GeographyAPI.DTOs.External;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeographyAPI.Repositories
@@ -13,19 +13,29 @@ namespace GeographyAPI.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Language>?> GetAllLanguagesAsync()
+        public async Task<IEnumerable<ExternalLanguageDTO>?> GetAllLanguagesAsync()
         {
-            return await _context.Language.ToListAsync();
+            return await _context.Language.Select(l => new ExternalLanguageDTO
+            {
+                Name = l.Name,
+                FSIRank = l.FSIRank
+            }).ToListAsync();
         }
 
-        public async Task<Language?> GetLanguageByIDAsync(int id)
+        public async Task<ExternalLanguageDTO?> GetLanguageByIDAsync(int id)
         {
-            Language? language = await _context.Language.Where(l => l.LanguageID == id).FirstOrDefaultAsync();
+            ExternalLanguageDTO? language = await _context.Language.Where(l => l.LanguageID == id)
+                .Select(l => new ExternalLanguageDTO
+                {
+                    Name = l.Name,
+                    FSIRank = l.FSIRank
+                })
+                .FirstOrDefaultAsync();
 
             return language;
         }
 
-        public async Task<IEnumerable<Language>?> GetLanguagesByCountryAsync(string country)
+        public async Task<IEnumerable<ExternalLanguageDTO>?> GetLanguagesByCountryAsync(string country)
         {
             int? countryId = await _context.Country.Where(c => c.Name == country).Select(c => c.CountryID).FirstOrDefaultAsync();
 
@@ -34,16 +44,24 @@ namespace GeographyAPI.Repositories
                 return null;
             }
 
-            List<Language>? languages = await _context.CountryLanguage.Where(cl => cl.CountryID == countryId)
-                .Select(cl => cl.Language)
+            List<ExternalLanguageDTO>? languages = await _context.CountryLanguage.Where(cl => cl.CountryID == countryId)
+                .Select(cl => new ExternalLanguageDTO
+                {
+                    Name = cl.Language.Name,
+                    FSIRank = cl.Language.FSIRank
+                })
                 .ToListAsync();
 
             return languages;
         }
 
-        public async Task<IEnumerable<Language>?> GetLanguagesByFSIRankAsync(string rank)
+        public async Task<IEnumerable<ExternalLanguageDTO>?> GetLanguagesByFSIRankAsync(string rank)
         {
-            List<Language>? languages = await _context.Language.Where(l => l.FSIRank == rank).ToListAsync();
+            List<ExternalLanguageDTO>? languages = await _context.Language.Where(l => l.FSIRank == rank).Select(l => new ExternalLanguageDTO
+            {
+                Name = l.Name,
+                FSIRank = l.FSIRank
+            }).ToListAsync();
 
             return languages;
         }
