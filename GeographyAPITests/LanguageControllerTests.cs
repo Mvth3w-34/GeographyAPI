@@ -1,5 +1,5 @@
 ﻿using GeographyAPI.Controllers;
-using GeographyAPI.Models;
+using GeographyAPI.DTOs.External;
 using GeographyAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
@@ -16,9 +16,9 @@ namespace GeographyAPITests
         {
 
             //Assert
-            var expectedItem = new List<Language> { new Language{ LanguageID=1, Name= "English", HoursOfStudyForProficiency = 0, FSIRank = "0"},
-                new Language{ LanguageID=2, Name= "French", HoursOfStudyForProficiency = 675, FSIRank = "I"},
-                new Language{ LanguageID=3, Name= "Spanish", HoursOfStudyForProficiency = 675, FSIRank = "I"}};
+            var expectedItem = new List<ExternalLanguageDTO> { new ExternalLanguageDTO{ Name= "English", HoursOfStudyForProficiency = 0, FSIRank = "0"},
+                new ExternalLanguageDTO{ Name= "French", HoursOfStudyForProficiency = 675, FSIRank = "I"},
+                new ExternalLanguageDTO{ Name= "Spanish", HoursOfStudyForProficiency = 675, FSIRank = "I"}};
 
             _languageMockRepo.GetAllLanguagesAsync().Returns(expectedItem);
 
@@ -35,10 +35,10 @@ namespace GeographyAPITests
 
             //Check if the object is List<Language>
             var list = result.Result as OkObjectResult;
-            Assert.IsType<List<Language>>(list.Value);
+            Assert.IsType<List<ExternalLanguageDTO>>(list.Value);
 
             //Check if the list contains the same number of items
-            var listItems = list.Value as List<Language>;
+            var listItems = list.Value as List<ExternalLanguageDTO>;
             Assert.Equal(3, listItems.Count);
 
 
@@ -65,8 +65,8 @@ namespace GeographyAPITests
         public async Task GetLanguagesByCountryValidAsync(string country)
         {
             //Assert
-            var expectedItem = new List<Language> { new Language{ LanguageID=1, Name= "English", HoursOfStudyForProficiency = 0, FSIRank = "0"},
-                new Language{ LanguageID=2, Name= "French", HoursOfStudyForProficiency = 675, FSIRank = "I"}, };
+            var expectedItem = new List<ExternalLanguageDTO> { new ExternalLanguageDTO{ Name= "English", HoursOfStudyForProficiency = 0, FSIRank = "0"},
+                new ExternalLanguageDTO{ Name= "French", HoursOfStudyForProficiency = 675, FSIRank = "I"}, };
 
 
             _languageMockRepo.GetLanguagesByCountryAsync(country).Returns(expectedItem);
@@ -84,10 +84,10 @@ namespace GeographyAPITests
 
             //Check if the object is List<Language>
             var list = result.Result as OkObjectResult;
-            Assert.IsType<List<Language>>(list.Value);
+            Assert.IsType<List<ExternalLanguageDTO>>(list.Value);
 
             //Check if the list contains the same number of items
-            var listItems = list.Value as List<Language>;
+            var listItems = list.Value as List<ExternalLanguageDTO>;
             Assert.Equal(2, listItems.Count);
         }
 
@@ -111,9 +111,9 @@ namespace GeographyAPITests
         public async Task GetLanguagesByFSIValidAsync(string rank)
         {
             //Assert 
-            var expectedItem = new List<Language> {
-                new Language{ LanguageID=2, Name= "French", HoursOfStudyForProficiency = 675, FSIRank = "I"},
-                new Language{ LanguageID=3, Name= "Spanish", HoursOfStudyForProficiency = 675, FSIRank = "I"} };
+            var expectedItem = new List<ExternalLanguageDTO> {
+                new ExternalLanguageDTO{ Name= "French", HoursOfStudyForProficiency = 675, FSIRank = "I"},
+                new ExternalLanguageDTO{ Name= "Spanish", HoursOfStudyForProficiency = 675, FSIRank = "I"} };
 
             _languageMockRepo.GetLanguagesByFSIRankAsync(rank).Returns(expectedItem);
 
@@ -126,9 +126,9 @@ namespace GeographyAPITests
             Assert.IsType<OkObjectResult>(result.Result);
 
             var list = result.Result as OkObjectResult;
-            Assert.IsType<List<Language>>(list.Value);
+            Assert.IsType<List<ExternalLanguageDTO>>(list.Value);
 
-            var listItems = list.Value as List<Language>;
+            var listItems = list.Value as List<ExternalLanguageDTO>;
             Assert.Equal(2, listItems.Count());
         }
 
@@ -153,7 +153,7 @@ namespace GeographyAPITests
         public async Task GetLanguageByIDValidAsync(int id)
         {
             var expectedItem =
-                new Language { LanguageID = 1, Name = "Spanish", HoursOfStudyForProficiency = 675, FSIRank = "I" };
+                new ExternalLanguageDTO { Name = "Spanish", HoursOfStudyForProficiency = 675, FSIRank = "I" };
 
             _languageMockRepo.GetLanguageByIDAsync(id).Returns(expectedItem);
 
@@ -166,7 +166,7 @@ namespace GeographyAPITests
             Assert.IsType<OkObjectResult>(result.Result);
 
             var language = result.Result as OkObjectResult;
-            Assert.IsType<Language>(language.Value);
+            Assert.IsType<ExternalLanguageDTO>(language.Value);
 
         }
 
