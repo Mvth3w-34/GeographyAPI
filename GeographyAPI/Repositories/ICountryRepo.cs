@@ -4,11 +4,11 @@ namespace GeographyAPI.Repositories
 {
     public interface ICountryRepo
     {
-        Task<ExternalCountryDTO?> GetCountryByIDAsync(int id);
+        Task<CountryResponseDTO?> GetCountryByIDAsync(int id);
 
-        Task<IEnumerable<ExternalCountryDTO>?> GetAllCountriesAsync();
-        Task<ExternalCountryDTO?> GetCountryByCapitalCityAsync(string name);
+        Task<IEnumerable<CountryResponseDTO>?> GetAllCountriesAsync();
+        Task<CountryResponseDTO?> GetCountryByCapitalCityAsync(string name);
 
-        Task<IEnumerable<ExternalCountryDTO>?> GetCountriesByLanguageAsync(string language);
+        Task<IEnumerable<CountryResponseDTO>?> GetCountriesByLanguageAsync(string language);
     }
 }

@@ -1,6 +1,6 @@
 namespace GeographyAPI.DTOs.External
 {
-    public record ExternalLanguageDTO
+    public record LanguageResponseDTO
     {
         public string Name { get; set; }
 

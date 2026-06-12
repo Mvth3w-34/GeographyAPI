@@ -13,19 +13,19 @@ namespace GeographyAPI.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<ExternalLanguageDTO>?> GetAllLanguagesAsync()
+        public async Task<IEnumerable<LanguageResponseDTO>?> GetAllLanguagesAsync()
         {
-            return await _context.Language.Select(l => new ExternalLanguageDTO
+            return await _context.Language.Select(l => new LanguageResponseDTO
             {
                 Name = l.Name,
                 FSIRank = l.FSIRank
             }).ToListAsync();
         }
 
-        public async Task<ExternalLanguageDTO?> GetLanguageByIDAsync(int id)
+        public async Task<LanguageResponseDTO?> GetLanguageByIDAsync(int id)
         {
-            ExternalLanguageDTO? language = await _context.Language.Where(l => l.LanguageID == id)
-                .Select(l => new ExternalLanguageDTO
+            LanguageResponseDTO? language = await _context.Language.Where(l => l.LanguageID == id)
+                .Select(l => new LanguageResponseDTO
                 {
                     Name = l.Name,
                     FSIRank = l.FSIRank
@@ -35,7 +35,7 @@ namespace GeographyAPI.Repositories
             return language;
         }
 
-        public async Task<IEnumerable<ExternalLanguageDTO>?> GetLanguagesByCountryAsync(string country)
+        public async Task<IEnumerable<LanguageResponseDTO>?> GetLanguagesByCountryAsync(string country)
         {
             int? countryId = await _context.Country.Where(c => c.Name == country).Select(c => c.CountryID).FirstOrDefaultAsync();
 
@@ -44,8 +44,8 @@ namespace GeographyAPI.Repositories
                 return null;
             }
 
-            List<ExternalLanguageDTO>? languages = await _context.CountryLanguage.Where(cl => cl.CountryID == countryId)
-                .Select(cl => new ExternalLanguageDTO
+            List<LanguageResponseDTO>? languages = await _context.CountryLanguage.Where(cl => cl.CountryID == countryId)
+                .Select(cl => new LanguageResponseDTO
                 {
                     Name = cl.Language.Name,
                     FSIRank = cl.Language.FSIRank
@@ -55,9 +55,9 @@ namespace GeographyAPI.Repositories
             return languages;
         }
 
-        public async Task<IEnumerable<ExternalLanguageDTO>?> GetLanguagesByFSIRankAsync(string rank)
+        public async Task<IEnumerable<LanguageResponseDTO>?> GetLanguagesByFSIRankAsync(string rank)
         {
-            List<ExternalLanguageDTO>? languages = await _context.Language.Where(l => l.FSIRank == rank).Select(l => new ExternalLanguageDTO
+            List<LanguageResponseDTO>? languages = await _context.Language.Where(l => l.FSIRank == rank).Select(l => new LanguageResponseDTO
             {
                 Name = l.Name,
                 FSIRank = l.FSIRank

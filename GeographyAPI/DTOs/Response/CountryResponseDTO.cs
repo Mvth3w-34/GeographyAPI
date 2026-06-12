@@ -1,6 +1,6 @@
 namespace GeographyAPI.DTOs.External
 {
-    public record ExternalCountryDTO
+    public record CountryResponseDTO
     {
 
         public string Name { get; set; }

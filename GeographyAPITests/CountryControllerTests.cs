@@ -19,10 +19,10 @@ namespace GeographyAPITests
 
             //Assert
 
-            var expectedItem = new List<ExternalCountryDTO> {
-                new ExternalCountryDTO{ Name = "Canada", Capital ="Ottawa" },
-                new ExternalCountryDTO{Name = "USA", Capital = "WashingtonDC"},
-                new ExternalCountryDTO{Name = "Mexico", Capital = "Mexico City"}, };
+            var expectedItem = new List<CountryResponseDTO> {
+                new CountryResponseDTO{ Name = "Canada", Capital ="Ottawa" },
+                new CountryResponseDTO{Name = "USA", Capital = "WashingtonDC"},
+                new CountryResponseDTO{Name = "Mexico", Capital = "Mexico City"}, };
 
             _countryMockRepo.GetAllCountriesAsync().Returns(expectedItem);
 
@@ -37,9 +37,9 @@ namespace GeographyAPITests
             Assert.IsType<OkObjectResult>(result.Result);
 
             var list = result.Result as OkObjectResult;
-            Assert.IsType<List<ExternalCountryDTO>>(list.Value);
+            Assert.IsType<List<CountryResponseDTO>>(list.Value);
 
-            var listItems = list.Value as List<ExternalCountryDTO>;
+            var listItems = list.Value as List<CountryResponseDTO>;
             Assert.Equal(3, listItems.Count);
 
         }
@@ -71,9 +71,9 @@ namespace GeographyAPITests
 
             //Assert
 
-            var expectedItem = new List<ExternalCountryDTO> {
-                new ExternalCountryDTO{Name = "Canada", Capital = "Ottawa"},
-                new ExternalCountryDTO { Name = "USA", Capital = "WashingtonDC" }, };
+            var expectedItem = new List<CountryResponseDTO> {
+                new CountryResponseDTO{Name = "Canada", Capital = "Ottawa"},
+                new CountryResponseDTO { Name = "USA", Capital = "WashingtonDC" }, };
 
             _countryMockRepo.GetCountriesByLanguageAsync(language).Returns(expectedItem);
 
@@ -88,9 +88,9 @@ namespace GeographyAPITests
             Assert.IsType<OkObjectResult>(result.Result);
 
             var list = result.Result as OkObjectResult;
-            Assert.IsType<List<ExternalCountryDTO>>(list.Value);
+            Assert.IsType<List<CountryResponseDTO>>(list.Value);
 
-            var listItems = list.Value as List<ExternalCountryDTO>;
+            var listItems = list.Value as List<CountryResponseDTO>;
             Assert.Equal(2, listItems.Count);
 
         }
@@ -123,7 +123,7 @@ namespace GeographyAPITests
 
             //Assert
 
-            var expectedItem = new ExternalCountryDTO { Name = "Canada", Capital = "Ottawa" };
+            var expectedItem = new CountryResponseDTO { Name = "Canada", Capital = "Ottawa" };
 
             _countryMockRepo.GetCountryByIDAsync(id).Returns(expectedItem);
 
@@ -138,9 +138,9 @@ namespace GeographyAPITests
             Assert.IsType<OkObjectResult>(result.Result);
 
             var item = result.Result as OkObjectResult;
-            Assert.IsType<ExternalCountryDTO>(item.Value);
+            Assert.IsType<CountryResponseDTO>(item.Value);
 
-            var country = item.Value as ExternalCountryDTO;
+            var country = item.Value as CountryResponseDTO;
             Assert.Equal("Canada", country.Name);
 
         }
@@ -172,7 +172,7 @@ namespace GeographyAPITests
 
             //Assert
 
-            var expectedItem = new ExternalCountryDTO { Name = "Canada", Capital = "Ottawa" };
+            var expectedItem = new CountryResponseDTO { Name = "Canada", Capital = "Ottawa" };
 
             _countryMockRepo.GetCountryByCapitalCityAsync(capital).Returns(expectedItem);
 
@@ -187,9 +187,9 @@ namespace GeographyAPITests
             Assert.IsType<OkObjectResult>(result.Result);
 
             var item = result.Result as OkObjectResult;
-            Assert.IsType<ExternalCountryDTO>(item.Value);
+            Assert.IsType<CountryResponseDTO>(item.Value);
 
-            var country = item.Value as ExternalCountryDTO;
+            var country = item.Value as CountryResponseDTO;
             Assert.Equal("Canada", country.Name);
 
         }

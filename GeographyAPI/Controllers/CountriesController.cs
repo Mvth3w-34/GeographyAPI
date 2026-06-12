@@ -21,9 +21,9 @@ namespace GeographyAPI.Controllers
 
         // GET: api/countries/all
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ExternalCountryDTO>>> GetAllCountries()
+        public async Task<ActionResult<IEnumerable<CountryResponseDTO>>> GetAllCountries()
         {
-            IEnumerable<ExternalCountryDTO>? countries = await _countryRepo.GetAllCountriesAsync();
+            IEnumerable<CountryResponseDTO>? countries = await _countryRepo.GetAllCountriesAsync();
 
             if (countries != null)
             {
@@ -38,9 +38,9 @@ namespace GeographyAPI.Controllers
 
         // GET api/countries/
         [HttpGet("by-language")]
-        public async Task<ActionResult<ExternalCountryDTO>> GetCountriesByLanguage([FromQuery] string language)
+        public async Task<ActionResult<CountryResponseDTO>> GetCountriesByLanguage([FromQuery] string language)
         {
-            IEnumerable<ExternalCountryDTO>? countries = await _countryRepo.GetCountriesByLanguageAsync(language);
+            IEnumerable<CountryResponseDTO>? countries = await _countryRepo.GetCountriesByLanguageAsync(language);
 
             if (countries != null)
             {
@@ -53,9 +53,9 @@ namespace GeographyAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ExternalCountryDTO>> GetCountryByID(int id)
+        public async Task<ActionResult<CountryResponseDTO>> GetCountryByID(int id)
         {
-            ExternalCountryDTO? country = await _countryRepo.GetCountryByIDAsync(id);
+            CountryResponseDTO? country = await _countryRepo.GetCountryByIDAsync(id);
 
             if (country != null)
             {
@@ -68,9 +68,9 @@ namespace GeographyAPI.Controllers
         }
 
         [HttpGet("by-capital")]
-        public async Task<ActionResult<ExternalCountryDTO>> GetCountryByCapitalCity([FromQuery] string capital)
+        public async Task<ActionResult<CountryResponseDTO>> GetCountryByCapitalCity([FromQuery] string capital)
         {
-            ExternalCountryDTO? country = await _countryRepo.GetCountryByCapitalCityAsync(capital);
+            CountryResponseDTO? country = await _countryRepo.GetCountryByCapitalCityAsync(capital);
 
             if (country != null)
             {

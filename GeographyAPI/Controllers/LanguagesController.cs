@@ -18,9 +18,9 @@ namespace GeographyAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ExternalLanguageDTO>>> GetAllLanguages()
+        public async Task<ActionResult<IEnumerable<LanguageResponseDTO>>> GetAllLanguages()
         {
-            IEnumerable<ExternalLanguageDTO>? languages = await _languageRepo.GetAllLanguagesAsync();
+            IEnumerable<LanguageResponseDTO>? languages = await _languageRepo.GetAllLanguagesAsync();
 
             if (languages != null)
             {
@@ -33,9 +33,9 @@ namespace GeographyAPI.Controllers
         }
 
         [HttpGet("by-country")]
-        public async Task<ActionResult<IEnumerable<ExternalLanguageDTO>>> GetLanguagesByCountry([FromQuery] string country)
+        public async Task<ActionResult<IEnumerable<LanguageResponseDTO>>> GetLanguagesByCountry([FromQuery] string country)
         {
-            IEnumerable<ExternalLanguageDTO>? languages = await _languageRepo.GetLanguagesByCountryAsync(country);
+            IEnumerable<LanguageResponseDTO>? languages = await _languageRepo.GetLanguagesByCountryAsync(country);
 
             if (languages != null)
             {
@@ -48,9 +48,9 @@ namespace GeographyAPI.Controllers
         }
 
         [HttpGet("by-FSIRank")]
-        public async Task<ActionResult<IEnumerable<ExternalLanguageDTO>>> GetLanguagesByFSI([FromQuery] string rank)
+        public async Task<ActionResult<IEnumerable<LanguageResponseDTO>>> GetLanguagesByFSI([FromQuery] string rank)
         {
-            IEnumerable<ExternalLanguageDTO>? languages = await _languageRepo.GetLanguagesByFSIRankAsync(rank);
+            IEnumerable<LanguageResponseDTO>? languages = await _languageRepo.GetLanguagesByFSIRankAsync(rank);
 
             if (languages != null)
             {
@@ -64,9 +64,9 @@ namespace GeographyAPI.Controllers
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ExternalLanguageDTO>> GetLanguageByID(int id)
+        public async Task<ActionResult<LanguageResponseDTO>> GetLanguageByID(int id)
         {
-            ExternalLanguageDTO? language = await _languageRepo.GetLanguageByIDAsync(id);
+            LanguageResponseDTO? language = await _languageRepo.GetLanguageByIDAsync(id);
 
             if (language != null)
             {

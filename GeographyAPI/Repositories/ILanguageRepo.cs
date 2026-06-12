@@ -4,10 +4,10 @@ namespace GeographyAPI.Repositories
 {
     public interface ILanguageRepo
     {
-        Task<ExternalLanguageDTO?> GetLanguageByIDAsync(int id);
-        Task<IEnumerable<ExternalLanguageDTO>?> GetAllLanguagesAsync();
-        Task<IEnumerable<ExternalLanguageDTO>?> GetLanguagesByCountryAsync(string country);
+        Task<LanguageResponseDTO?> GetLanguageByIDAsync(int id);
+        Task<IEnumerable<LanguageResponseDTO>?> GetAllLanguagesAsync();
+        Task<IEnumerable<LanguageResponseDTO>?> GetLanguagesByCountryAsync(string country);
 
-        Task<IEnumerable<ExternalLanguageDTO>?> GetLanguagesByFSIRankAsync(string rank);
+        Task<IEnumerable<LanguageResponseDTO>?> GetLanguagesByFSIRankAsync(string rank);
     }
 }
