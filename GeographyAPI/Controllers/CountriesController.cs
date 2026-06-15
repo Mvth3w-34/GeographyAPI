@@ -1,5 +1,6 @@
 ﻿using GeographyAPI.DTOs.External;
 using GeographyAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -8,6 +9,7 @@ namespace GeographyAPI.Controllers
 {
     [Route("api/countries")]
     [ApiController]
+    [Authorize]
     public class CountriesController : ControllerBase
     {
         private readonly ICountryRepo _countryRepo;
