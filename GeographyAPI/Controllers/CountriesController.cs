@@ -9,7 +9,6 @@ namespace GeographyAPI.Controllers
 {
     [Route("api/countries")]
     [ApiController]
-    [Authorize]
     public class CountriesController : ControllerBase
     {
         private readonly ICountryRepo _countryRepo;
@@ -23,6 +22,7 @@ namespace GeographyAPI.Controllers
 
         // GET: api/countries/all
         [HttpGet]
+        [Authorize(Policy = "Country-readonly")]
         public async Task<ActionResult<IEnumerable<CountryResponseDTO>>> GetAllCountries()
         {
             IEnumerable<CountryResponseDTO>? countries = await _countryRepo.GetAllCountriesAsync();
@@ -40,6 +40,7 @@ namespace GeographyAPI.Controllers
 
         // GET api/countries/
         [HttpGet("by-language")]
+        [Authorize(Policy = "Country-readonly")]
         public async Task<ActionResult<CountryResponseDTO>> GetCountriesByLanguage([FromQuery] string language)
         {
             IEnumerable<CountryResponseDTO>? countries = await _countryRepo.GetCountriesByLanguageAsync(language);
@@ -55,6 +56,7 @@ namespace GeographyAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "Country-readonly")]
         public async Task<ActionResult<CountryResponseDTO>> GetCountryByID(int id)
         {
             CountryResponseDTO? country = await _countryRepo.GetCountryByIDAsync(id);
@@ -70,6 +72,7 @@ namespace GeographyAPI.Controllers
         }
 
         [HttpGet("by-capital")]
+        [Authorize(Policy = "Country-readonly")]
         public async Task<ActionResult<CountryResponseDTO>> GetCountryByCapitalCity([FromQuery] string capital)
         {
             CountryResponseDTO? country = await _countryRepo.GetCountryByCapitalCityAsync(capital);

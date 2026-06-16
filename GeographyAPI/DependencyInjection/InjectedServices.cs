@@ -67,6 +67,14 @@ public static class InjectedServices
 
         });
 
+        // Adding authorization services
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("Country-readonly", policy => policy.RequireClaim("scope", "countries:read"));
+            options.AddPolicy("Language-readonly", policy => policy.RequireClaim("scope", "languages:read"));
+        });
+
+
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         services.AddOpenApi();
     }
