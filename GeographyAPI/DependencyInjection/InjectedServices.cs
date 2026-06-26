@@ -13,7 +13,7 @@ public static class InjectedServices
 {
     public static void AddInjectedServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration["ConnectionString"];
+        var connectionString = configuration["ConnectionStrings:DefaultConnection"];
 
         services.AddControllers();
         services.AddDbContext<GeographyContext>(options =>
